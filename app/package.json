@@ -1,0 +1,30 @@
+{
+  "name": "pos-kontrol",
+  "version": "2.0.0",
+  "private": true,
+  "description": "POS Контроль — система контроля продаж, расходов, склада и рабочего времени продавцов (PWA + APK)",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "python3 build.py",
+    "serve": "npx --yes http-server web -p 8080 -c-1",
+    "test:e2e": "node test/e2e.js",
+    "test:sandbox": "node test/sandbox-preview.js",
+    "cap:add:android": "npx cap add android",
+    "cap:sync": "npm run build && npx cap sync android",
+    "cap:open": "npx cap open android",
+    "apk:debug": "npm run cap:sync && cd android && ./gradlew assembleDebug",
+    "apk:release": "npm run cap:sync && cd android && ./gradlew assembleRelease",
+    "assets": "npx @capacitor/assets generate --iconBackgroundColor '#4338ca' --splashBackgroundColor '#f4f5fa'"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/filesystem": "^6.0.2",
+    "@capacitor/share": "^6.0.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.0",
+    "puppeteer": "^23.11.1",
+    "wrangler": "^3.114.17"
+  }
+}

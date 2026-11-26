@@ -1,0 +1,47 @@
+{
+  "name": "pos-kontrol",
+  "productName": "POS Контроль",
+  "version": "3.4.12",
+  "description": "POS Контроль — продажи, склад, время. Настольная версия для Windows.",
+  "main": "main.js",
+  "author": "POS Контроль",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable --x64"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "kz.poskontrol.desktop",
+    "productName": "POS Контроль",
+    "copyright": "POS Контроль",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "app/**/*",
+      "build/icon.png"
+    ],
+    "compression": "maximum",
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icon.png",
+      "legalTrademarks": "POS Контроль"
+    },
+    "portable": {
+      "artifactName": "POS-Kontrol-${version}.exe",
+      "requestExecutionLevel": "user",
+      "unpackDirName": "POSKontrol"
+    }
+  }
+}

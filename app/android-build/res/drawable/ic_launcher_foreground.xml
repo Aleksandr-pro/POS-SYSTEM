@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- навес магазина -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M37,33 L71,33 A5.5,5.5 0 0 1 76.5,38.5 L76.5,41.5 A3,3 0 0 1 73.5,44.5 L34.5,44.5 A3,3 0 0 1 31.5,41.5 L31.5,38.5 A5.5,5.5 0 0 1 37,33 Z" />
+    <!-- корпус -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M35,46 L73,46 A4.5,4.5 0 0 1 77.5,50.5 L77.5,70.5 A4.5,4.5 0 0 1 73,75 L35,75 A4.5,4.5 0 0 1 30.5,70.5 L30.5,50.5 A4.5,4.5 0 0 1 35,46 Z" />
+    <!-- дверь -->
+    <path android:fillColor="#4338CA"
+        android:pathData="M57,57 L66,57 A2,2 0 0 1 68,59 L68,75 L55,75 L55,59 A2,2 0 0 1 57,57 Z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M64.5,65 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0" />
+    <!-- столбики графика -->
+    <path android:fillColor="#4338CA"
+        android:pathData="M38,65 L41.5,65 A1.5,1.5 0 0 1 43,66.5 L43,75 L36.5,75 L36.5,66.5 A1.5,1.5 0 0 1 38,65 Z" />
+    <path android:fillColor="#4338CA"
+        android:pathData="M46,59 L49.5,59 A1.5,1.5 0 0 1 51,60.5 L51,75 L44.5,75 L44.5,60.5 A1.5,1.5 0 0 1 46,59 Z" />
+</vector>
