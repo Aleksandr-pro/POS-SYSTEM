@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4338ca" id="themeColorMeta">
+  <meta name="description" content="POS Контроль — система контроля продаж, расходов, склада и рабочего времени продавцов. Работает офлайн.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="POS Контроль">
+  <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+  <meta name="theme-color" content="#4338ca" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e18" media="(prefers-color-scheme: dark)">
+  <title>POS Контроль — продажи, склад, время</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon.png">
+  <meta name="apple-itunes-app" content="app-id=">
+  <script>
+    // Тема применяется до отрисовки, чтобы не было вспышки светлого фона
+    (function () {
+      try {
+        var pref = localStorage.getItem('poskontrol_theme') || 'system';
+        var dark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme-pref', pref);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', dark ? '#0a0e18' : '#4338ca');
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f4f5fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;color:#667085">
+      <div style="text-align:center">
+        <div style="width:56px;height:56px;border-radius:16px;margin:0 auto 14px;background:linear-gradient(140deg,#6366f1,#4338ca 60%,#7c3aed);box-shadow:0 12px 24px -10px rgba(67,56,202,.5)"></div>
+        <div style="font-size:14px;font-weight:600;color:#101828">POS Контроль</div>
+        <div style="font-size:12.5px;margin-top:4px">Загрузка приложения…</div>
+      </div>
+    </div>
+  </div>
+  <noscript>
+    <div style="padding:24px;font-family:sans-serif;text-align:center">
+      Для работы POS-системы включите JavaScript в браузере.
+    </div>
+  </noscript>
+
+  <script src="xlsx.js"></script>
+  <script src="import-data.js"></script>
+  <script src="core.js"></script>
+  <script src="api.js"></script>
+  <script src="ui.js"></script>
+  <script src="pages-auth.js"></script>
+  <script src="pages-dashboard.js"></script>
+  <script src="pages-cash.js"></script>
+  <script src="pages-products.js"></script>
+  <script src="pages-stock.js"></script>
+  <script src="pages-points.js"></script>
+  <script src="pages-time.js"></script>
+  <script src="pages-analytics.js"></script>
+  <script src="pages-manual.js"></script>
+  <script src="pages-changes.js"></script>
+  <script src="pages-help.js"></script>
+  <script src="pages-settings.js"></script>
+  <script src="main.js"></script>
+  <script>
+    // Service worker нужен только для веб-версии (PWA). В APK Capacitor не регистрируем.
+    (function () {
+      if (!('serviceWorker' in navigator)) return;
+      if (window.Capacitor) return;
+      if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function (err) {
+          console.warn('Service worker не зарегистрирован', err);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

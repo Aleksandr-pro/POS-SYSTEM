@@ -1,0 +1,60 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Сборка APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Установка зависимостей
+        run: npm install --no-audit --no-fund
+
+      - name: Сборка веб-части
+        run: python3 build.py || node -e "console.log('build.py недоступен')"
+
+      - name: Capacitor: добавить Android
+        run: npx cap add android || true
+
+      - name: Capacitor: синхронизация
+        run: npx cap sync android
+
+      - name: Разрешения (геолокация, камера)
+        run: |
+          F=android/app/src/main/AndroidManifest.xml
+          grep -q 'ACCESS_FINE_LOCATION' $F || sed -i 's#<application#<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />\n    <uses-permission android:name="android.permission.CAMERA" />\n    <application#' $F
+          grep -q 'android.permission.INTERNET' $F || sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET" />\n    <application#' $F
+          head -30 $F
+
+      - name: Сборка debug APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Загрузить APK артефактом
+        uses: actions/upload-artifact@v4
+        with:
+          name: pos-kontrol-debug-apk
+          path: android/app/build/outputs/apk/debug/*.apk
+          retention-days: 30

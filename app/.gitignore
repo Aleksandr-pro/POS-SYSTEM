@@ -1,0 +1,8 @@
+node_modules/
+.local-libs/
+screenshots/
+dist/
+web/
+*.log
+.DS_Store
+android/
