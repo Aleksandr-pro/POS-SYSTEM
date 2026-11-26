@@ -1,0 +1,26 @@
+node_modules/
+.local-libs/
+*.log
+.DS_Store
+.env
+.env.*
+
+# артефакты сборки
+dist/
+app/web/
+app/dist/
+app/screenshots/
+screenshots/
+
+# локальное состояние wrangler (содержит кэш и токены)
+.wrangler/
+**/.wrangler/
+
+# ключи подписи и прочие секреты
+*.keystore
+*.jks
+*.p12
+*.pfx
+
+# служебная папка загрузки с Google Диска (не является частью проекта)
+google_drive/

@@ -1,0 +1,26 @@
+const puppeteer=require('puppeteer');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{
+ const b=await puppeteer.launch({headless:'new',args:['--no-sandbox','--disable-dev-shm-usage']});
+ const p=await b.newPage(); await p.setViewport({width:1440,height:950});
+ await p.goto('http://127.0.0.1:8099/index.html',{waitUntil:'load'});
+ await p.evaluate(()=>localStorage.clear());
+ await p.reload({waitUntil:'load'}); await sleep(400);
+ await p.click('#goRegister'); await sleep(300);
+ await p.type('#regName','Тест'); await p.type('#regUser','tst1'); await p.type('#regPass','pass123'); await p.type('#regPass2','pass123');
+ await p.evaluate(()=>{const b=document.querySelector('#regTerms');b.checked=true;b.dispatchEvent(new Event('change',{bubbles:true}));});
+ await p.click('#regBtn'); await p.waitForSelector('.topbar',{timeout:15000});
+ console.log('1 зарегистрирован');
+ await p.evaluate(()=>{logoutUser(); location.hash='#/login';});
+ await sleep(600); await p.reload({waitUntil:'load'}); await sleep(900);
+ await p.type('#loginUser','tst1'); await p.type('#loginPass','pass123');
+ console.log('2 значения после reload:', await p.evaluate(()=>({u:document.querySelector('#loginUser').value, focus:document.hasFocus(), active:document.activeElement.id})));
+ await p.click('#loginBtn'); await p.waitForSelector('.topbar',{timeout:15000});
+ console.log('2 вошли');
+ await p.evaluate(()=>{logoutUser(); location.hash='#/login';});
+ await sleep(600); await p.reload({waitUntil:'load'}); await sleep(900);
+ console.log('3 перед вводом:', await p.evaluate(()=>({hash:location.hash, focus:document.hasFocus(), login:!!document.querySelector('#loginUser')})));
+ await p.type('#loginUser','tst1');
+ console.log('3 после type:', await p.evaluate(()=>({v:document.querySelector('#loginUser').value, active:document.activeElement.id, focus:document.hasFocus()})));
+ await b.close();
+})();

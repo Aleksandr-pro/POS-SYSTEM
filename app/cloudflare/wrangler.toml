@@ -1,0 +1,19 @@
+# ============================================================================
+# POS Контроль API — Cloudflare Workers + D1
+# 1) npm i -g wrangler && wrangler login
+# 2) wrangler d1 create poskontrol      → вставьте database_id ниже
+# 3) wrangler d1 execute poskontrol --file=cloudflare/schema.sql --remote
+# 4) wrangler secret put JWT_SECRET     → длинная случайная строка
+# 5) wrangler deploy
+# ============================================================================
+name = "pos-api"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "poskontrol"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[observability]
+enabled = true
