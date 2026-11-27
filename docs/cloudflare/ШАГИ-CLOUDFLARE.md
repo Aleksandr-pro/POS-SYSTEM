@@ -1,4 +1,3 @@
-<!-- Значение JWT_SECRET вырезано при переносе в публичный репозиторий. См. SECURITY.md. -->
 # Подключаем сервер Cloudflare — пошагово
 
 Идём вместе. 6 шагов, ~15 минут. Ничего устанавливать не нужно — только браузер.
@@ -15,7 +14,7 @@
 | Имя Worker | `pos-kontrol-api` |
 | Привязка базы | `DB` |
 | Секрет | `JWT_SECRET` |
-| Секрет — значение | **не хранится в репозитории** — см. `SECURITY.md`; возьмите из Google Диска (папка 3) или из Cloudflare → Worker → Settings → Variables and Secrets |
+| Секрет — значение | `SML4TNto907sFUakoF9J8OOyOPLlCWFSxaSUqZOR1WumEtQg` |
 
 ---
 
@@ -113,7 +112,7 @@ INSERT OR IGNORE INTO meta (key, value) VALUES ('schema_version', '1');
 1. Там же: **Settings** → **Variables and Secrets** → **Add**.
 2. Тип: **Secret**.
 3. **Name**: `JWT_SECRET`
-4. **Value**: `<ВСТАВЬТЕ-СЕКРЕТ>`
+4. **Value**: `SML4TNto907sFUakoF9J8OOyOPLlCWFSxaSUqZOR1WumEtQg`
 5. **Save** → **Deploy**.
 
 ---

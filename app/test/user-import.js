@@ -52,9 +52,9 @@ const sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms
     }, realCsv);
     ok('в файле найдено 33 сотрудника', parsed.rows === 33, 'строк: ' + parsed.rows);
     ok('ошибок разбора нет', parsed.errors.length === 0, parsed.errors.join(' | ') || 'чисто');
-    ok('первая строка разобрана верно', parsed.first.username.length > 0 && parsed.first.fullName.length > 0 && parsed.first.password === parsed.first.username,
+    ok('первая строка разобрана верно', parsed.first.username === 'yerkenaz_1' && parsed.first.fullName === 'Еркеназ' && parsed.first.password === 'yerkenaz_1',
       parsed.first.fullName + ' / @' + parsed.first.username);
-    ok('последняя строка разобрана верно', parsed.last.username.length > 0 && parsed.last.fullName.length > 0, 'строк в файле: ' + parsed.rows);
+    ok('последняя строка разобрана верно', parsed.last.username === 'kamilla0', parsed.last.username);
     ok('все роли — продавцы', parsed.roles.length === 1 && parsed.roles[0] === 'seller', parsed.roles.join(','));
 
     const formats = await page.evaluate(() => {

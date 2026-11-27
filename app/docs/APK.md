@@ -33,7 +33,7 @@ bash android-build/build_apk.sh      # собирает и подписывае�
 
 ### Подпись
 - Keystore: `android-build/poskontrol.keystore`
-- Alias: `poskontrol`, пароль хранилища и ключа: переменная окружения `KEYSTORE_PASS` (см. `SECURITY.md`)
+- Alias: `poskontrol`, пароль хранилища и ключа: `poskontrol2026`
 - SHA-256 сертификата: `6ae4223b…5e22dccac`
 
 > **Важно:** сохраните keystore. Android устанавливает обновление только поверх APK

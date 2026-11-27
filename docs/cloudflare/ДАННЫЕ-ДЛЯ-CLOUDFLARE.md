@@ -1,4 +1,3 @@
-<!-- Значение JWT_SECRET вырезано при переносе в публичный репозиторий. См. SECURITY.md. -->
 # Cloudflare — все данные для проверки
 
 Сервер: https://pos-kontrol-api.my-tt-accaunt235.workers.dev
@@ -104,7 +103,7 @@ Worker pos-kontrol-api → Settings → Bindings
 
 | Имя | Тип | Значение |
 |---|---|---|
-| JWT_SECRET | Secret (не Plaintext) | <ВСТАВЬТЕ-СЕКРЕТ> |
+| JWT_SECRET | Secret (не Plaintext) | SML4TNto907sFUakoF9J8OOyOPLlCWFSxaSUqZOR1WumEtQg |
 
 Больше ничего не нужно. После добавления — снова Deploy.
 
