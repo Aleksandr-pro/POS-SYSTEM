@@ -16,11 +16,5 @@ screenshots/
 .wrangler/
 **/.wrangler/
 
-# ключи подписи и прочие секреты
-*.keystore
-*.jks
-*.p12
-*.pfx
-
 # служебная папка загрузки с Google Диска (не является частью проекта)
 google_drive/

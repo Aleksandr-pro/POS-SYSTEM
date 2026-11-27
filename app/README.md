@@ -118,7 +118,7 @@ bash android-build/build_apk.sh      # APK в dist/
 - кнопка «Назад» сначала закрывает модальные окна и возвращает по разделам;
 - splash-экран с логотипом, adaptive-иконка, тёмная и светлая темы системных панелей.
 
-Ключ подписи: `android-build/poskontrol.keystore`, alias `poskontrol`. Пароль хранилища берётся из переменной окружения `KEYSTORE_PASS` — сам ключ и пароль в репозитории не лежат (см. `SECURITY.md`).
+Ключ подписи: `android-build/poskontrol.keystore`, alias `poskontrol`, пароль `poskontrol2026`.
 **Сохраните его** — обновления APK должны быть подписаны тем же ключом, иначе Android не установит новую версию поверх.
 
 Подробная инструкция, включая сборку через Android Studio и GitHub Actions — `docs/APK.md`.

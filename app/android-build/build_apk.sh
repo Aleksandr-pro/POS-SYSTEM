@@ -88,7 +88,7 @@ if [ ! -f "$KEYSTORE" ]; then
     -keystore "$KEYSTORE" \
     -alias poskontrol \
     -keyalg RSA -keysize 2048 -validity 10950 \
-    -storepass "$KEYSTORE_PASS" -keypass "$KEYSTORE_PASS" \
+    -storepass poskontrol2026 -keypass poskontrol2026 \
     -dname "CN=POS Kontrol, OU=Sales, O=POS Kontrol, L=Aktobe, ST=Aktobe, C=KZ" 2>&1 | tail -2
 fi
 
@@ -97,8 +97,8 @@ APK_NAME="POS-Kontrol-3.4.12.apk"
 "$BT/apksigner" sign \
   --ks "$KEYSTORE" \
   --ks-key-alias poskontrol \
-  --ks-pass env:KEYSTORE_PASS \
-  --key-pass env:KEYSTORE_PASS \
+  --ks-pass pass:poskontrol2026 \
+  --key-pass pass:poskontrol2026 \
   --min-sdk-version $MIN_SDK \
   --v1-signing-enabled true \
   --v2-signing-enabled true \
